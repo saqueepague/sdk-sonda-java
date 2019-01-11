@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.auth;
+package br.com.saqueepague.auth;
 
-import io.swagger.client.Pair;
+import br.com.saqueepague.Pair;
 
 import java.util.Map;
 import java.util.List;

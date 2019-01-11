@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client;
+package br.com.saqueepague;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T15:47:10.474Z[GMT]")public class Configuration {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T16:00:06.901Z[GMT]")public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 
     /**

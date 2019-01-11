@@ -10,23 +10,24 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.api;
+package br.com.saqueepague.sonda;
 
-import io.swagger.client.ApiCallback;
-import io.swagger.client.ApiClient;
-import io.swagger.client.ApiException;
-import io.swagger.client.ApiResponse;
-import io.swagger.client.Configuration;
-import io.swagger.client.Pair;
-import io.swagger.client.ProgressRequestBody;
-import io.swagger.client.ProgressResponseBody;
+import br.com.saqueepague.ApiCallback;
+import br.com.saqueepague.ApiClient;
+import br.com.saqueepague.ApiException;
+import br.com.saqueepague.ApiResponse;
+import br.com.saqueepague.Configuration;
+import br.com.saqueepague.Pair;
+import br.com.saqueepague.ProgressRequestBody;
+import br.com.saqueepague.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
 
-import io.swagger.client.model.AuthResp;
+import io.swagger.client.model.SondaReq;
+import io.swagger.client.model.SondaResp;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -34,14 +35,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AuthControllerApi {
+public class SondaApiControllerApi {
     private ApiClient apiClient;
 
-    public AuthControllerApi() {
+    public SondaApiControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public AuthControllerApi(ApiClient apiClient) {
+    public SondaApiControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -54,20 +55,18 @@ public class AuthControllerApi {
     }
 
     /**
-     * Build call for saqueepagueOauthTokenPost
-     * @param grantType  (optional)
-     * @param password  (optional)
-     * @param username  (optional)
+     * Build call for saqueepagueSondaPost
+     * @param body Objeto com dados de procura da transação. (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call saqueepagueOauthTokenPostCall(String grantType, String password, String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+    public com.squareup.okhttp.Call saqueepagueSondaPostCall(SondaReq body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/saqueepague/oauth/token";
+        String localVarPath = "/saqueepague/sonda";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -75,12 +74,6 @@ public class AuthControllerApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (grantType != null)
-        localVarFormParams.put("grant_type", grantType);
-        if (password != null)
-        localVarFormParams.put("password", password);
-        if (username != null)
-        localVarFormParams.put("username", username);
 
         final String[] localVarAccepts = {
             "application/json"
@@ -89,7 +82,7 @@ public class AuthControllerApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/x-www-form-urlencoded"
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -106,14 +99,18 @@ public class AuthControllerApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "BasicAuth" };
+        String[] localVarAuthNames = new String[] { "OAuth2" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call saqueepagueOauthTokenPostValidateBeforeCall(String grantType, String password, String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call saqueepagueSondaPostValidateBeforeCall(SondaReq body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling saqueepagueSondaPost(Async)");
+        }
         
-        com.squareup.okhttp.Call call = saqueepagueOauthTokenPostCall(grantType, password, username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = saqueepagueSondaPostCall(body, progressListener, progressRequestListener);
         return call;
 
         
@@ -123,45 +120,39 @@ public class AuthControllerApi {
     }
 
     /**
-     * Retorna o token de autenticação do serviço.
-     * Autentica o usuário e gera um token para a requisição de sonda.
-     * @param grantType  (optional)
-     * @param password  (optional)
-     * @param username  (optional)
-     * @return AuthResp
+     * Retorna o estado de uma transação.
+     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+     * @param body Objeto com dados de procura da transação. (required)
+     * @return SondaResp
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public AuthResp saqueepagueOauthTokenPost(String grantType, String password, String username) throws ApiException {
-        ApiResponse<AuthResp> resp = saqueepagueOauthTokenPostWithHttpInfo(grantType, password, username);
+    public SondaResp saqueepagueSondaPost(SondaReq body) throws ApiException {
+        ApiResponse<SondaResp> resp = saqueepagueSondaPostWithHttpInfo(body);
         return resp.getData();
     }
 
     /**
-     * Retorna o token de autenticação do serviço.
-     * Autentica o usuário e gera um token para a requisição de sonda.
-     * @param grantType  (optional)
-     * @param password  (optional)
-     * @param username  (optional)
-     * @return ApiResponse&lt;AuthResp&gt;
+     * Retorna o estado de uma transação.
+     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+     * @param body Objeto com dados de procura da transação. (required)
+     * @return ApiResponse&lt;SondaResp&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<AuthResp> saqueepagueOauthTokenPostWithHttpInfo(String grantType, String password, String username) throws ApiException {
-        com.squareup.okhttp.Call call = saqueepagueOauthTokenPostValidateBeforeCall(grantType, password, username, null, null);
-        Type localVarReturnType = new TypeToken<AuthResp>(){}.getType();
+    public ApiResponse<SondaResp> saqueepagueSondaPostWithHttpInfo(SondaReq body) throws ApiException {
+        com.squareup.okhttp.Call call = saqueepagueSondaPostValidateBeforeCall(body, null, null);
+        Type localVarReturnType = new TypeToken<SondaResp>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Retorna o token de autenticação do serviço. (asynchronously)
-     * Autentica o usuário e gera um token para a requisição de sonda.
-     * @param grantType  (optional)
-     * @param password  (optional)
-     * @param username  (optional)
+     * Retorna o estado de uma transação. (asynchronously)
+     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+     * @param body Objeto com dados de procura da transação. (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call saqueepagueOauthTokenPostAsync(String grantType, String password, String username, final ApiCallback<AuthResp> callback) throws ApiException {
+    public com.squareup.okhttp.Call saqueepagueSondaPostAsync(SondaReq body, final ApiCallback<SondaResp> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -182,8 +173,8 @@ public class AuthControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = saqueepagueOauthTokenPostValidateBeforeCall(grantType, password, username, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<AuthResp>(){}.getType();
+        com.squareup.okhttp.Call call = saqueepagueSondaPostValidateBeforeCall(body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<SondaResp>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

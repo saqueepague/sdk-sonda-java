@@ -25,7 +25,7 @@ import java.io.IOException;
  * Objeto de requisição que contem informações da transação sondada e procura o último estado da mesma por um período retroativo de 7 dias.
  */
 @Schema(description = "Objeto de requisição que contem informações da transação sondada e procura o último estado da mesma por um período retroativo de 7 dias.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T15:47:10.474Z[GMT]")public class SondaReqInfTransacao {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T16:00:06.901Z[GMT]")public class SondaReqInfTransacao {
 
   @SerializedName("dataLocal")
   private String dataLocal = null;

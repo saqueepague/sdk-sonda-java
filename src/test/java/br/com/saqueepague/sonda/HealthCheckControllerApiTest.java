@@ -10,11 +10,9 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.api;
+package br.com.saqueepague.sonda;
 
-import io.swagger.client.ApiException;
-import io.swagger.client.model.SondaReq;
-import io.swagger.client.model.SondaResp;
+import br.com.saqueepague.ApiException;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -24,25 +22,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for SondaApiControllerApi
+ * API tests for HealthCheckControllerApi
  */
 @Ignore
-public class SondaApiControllerApiTest {
+public class HealthCheckControllerApiTest {
 
-    private final SondaApiControllerApi api = new SondaApiControllerApi();
+    private final HealthCheckControllerApi api = new HealthCheckControllerApi();
 
     /**
-     * Retorna o estado de uma transação.
+     * Retorna o estado do serviço.
      *
-     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
+     * Verifica a disponibilidade do serviço de sonda.
      *
      * @throws ApiException
      *          if the Api call fails
      */
     @Test
-    public void saqueepagueSondaPostTest() throws ApiException {
-        SondaReq body = null;
-        SondaResp response = api.saqueepagueSondaPost(body);
+    public void actuatorHealthGetTest() throws ApiException {
+        Map<String, String> response = api.actuatorHealthGet();
 
         // TODO: test validations
     }

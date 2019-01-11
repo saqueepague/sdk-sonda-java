@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client;
+package br.com.saqueepague;
 
 import java.util.List;
 import java.util.Map;

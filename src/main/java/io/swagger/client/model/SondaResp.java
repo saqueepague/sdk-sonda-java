@@ -26,7 +26,7 @@ import java.io.IOException;
  * Objeto de resposta da sonda, contém o objeto da transação sondada. Caso não encontre a transação vai retornar estado pendente.
  */
 @Schema(description = "Objeto de resposta da sonda, contém o objeto da transação sondada. Caso não encontre a transação vai retornar estado pendente.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T15:47:10.474Z[GMT]")public class SondaResp {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T16:00:06.901Z[GMT]")public class SondaResp {
 
   @SerializedName("InfTransacao")
   private SondaRespInfTransacao infTransacao = null;

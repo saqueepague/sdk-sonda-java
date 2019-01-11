@@ -27,7 +27,7 @@ import java.io.IOException;
  * Objeto da requisição da sonda com informações da transação e do estabelecimento para a procura.
  */
 @Schema(description = "Objeto da requisição da sonda com informações da transação e do estabelecimento para a procura.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T15:47:10.474Z[GMT]")public class SondaReq {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T16:00:06.901Z[GMT]")public class SondaReq {
 
   @SerializedName("InfTransacao")
   private SondaReqInfTransacao infTransacao = null;

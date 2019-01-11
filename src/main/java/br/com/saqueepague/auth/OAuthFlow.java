@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.auth;
+package br.com.saqueepague.auth;
 
 public enum OAuthFlow {
     accessCode, implicit, password, application

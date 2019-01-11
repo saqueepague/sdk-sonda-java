@@ -10,22 +10,23 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.api;
+package br.com.saqueepague.sonda;
 
-import io.swagger.client.ApiCallback;
-import io.swagger.client.ApiClient;
-import io.swagger.client.ApiException;
-import io.swagger.client.ApiResponse;
-import io.swagger.client.Configuration;
-import io.swagger.client.Pair;
-import io.swagger.client.ProgressRequestBody;
-import io.swagger.client.ProgressResponseBody;
+import br.com.saqueepague.ApiCallback;
+import br.com.saqueepague.ApiClient;
+import br.com.saqueepague.ApiException;
+import br.com.saqueepague.ApiResponse;
+import br.com.saqueepague.Configuration;
+import br.com.saqueepague.Pair;
+import br.com.saqueepague.ProgressRequestBody;
+import br.com.saqueepague.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
 
+import io.swagger.client.model.AuthResp;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -33,14 +34,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HealthCheckControllerApi {
+public class AuthControllerApi {
     private ApiClient apiClient;
 
-    public HealthCheckControllerApi() {
+    public AuthControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public HealthCheckControllerApi(ApiClient apiClient) {
+    public AuthControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -53,17 +54,20 @@ public class HealthCheckControllerApi {
     }
 
     /**
-     * Build call for actuatorHealthGet
+     * Build call for saqueepagueOauthTokenPost
+     * @param grantType  (optional)
+     * @param password  (optional)
+     * @param username  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call actuatorHealthGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call saqueepagueOauthTokenPostCall(String grantType, String password, String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/actuator/health";
+        String localVarPath = "/saqueepague/oauth/token";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -71,15 +75,21 @@ public class HealthCheckControllerApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (grantType != null)
+        localVarFormParams.put("grant_type", grantType);
+        if (password != null)
+        localVarFormParams.put("password", password);
+        if (username != null)
+        localVarFormParams.put("username", username);
 
         final String[] localVarAccepts = {
-            "*/*"
+            "application/json"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+            "application/x-www-form-urlencoded"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -96,14 +106,14 @@ public class HealthCheckControllerApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "BasicAuth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call actuatorHealthGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call saqueepagueOauthTokenPostValidateBeforeCall(String grantType, String password, String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        com.squareup.okhttp.Call call = actuatorHealthGetCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = saqueepagueOauthTokenPostCall(grantType, password, username, progressListener, progressRequestListener);
         return call;
 
         
@@ -113,36 +123,45 @@ public class HealthCheckControllerApi {
     }
 
     /**
-     * Retorna o estado do serviço.
-     * Verifica a disponibilidade do serviço de sonda.
-     * @return Map&lt;String, String&gt;
+     * Retorna o token de autenticação do serviço.
+     * Autentica o usuário e gera um token para a requisição de sonda.
+     * @param grantType  (optional)
+     * @param password  (optional)
+     * @param username  (optional)
+     * @return AuthResp
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Map<String, String> actuatorHealthGet() throws ApiException {
-        ApiResponse<Map<String, String>> resp = actuatorHealthGetWithHttpInfo();
+    public AuthResp saqueepagueOauthTokenPost(String grantType, String password, String username) throws ApiException {
+        ApiResponse<AuthResp> resp = saqueepagueOauthTokenPostWithHttpInfo(grantType, password, username);
         return resp.getData();
     }
 
     /**
-     * Retorna o estado do serviço.
-     * Verifica a disponibilidade do serviço de sonda.
-     * @return ApiResponse&lt;Map&lt;String, String&gt;&gt;
+     * Retorna o token de autenticação do serviço.
+     * Autentica o usuário e gera um token para a requisição de sonda.
+     * @param grantType  (optional)
+     * @param password  (optional)
+     * @param username  (optional)
+     * @return ApiResponse&lt;AuthResp&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Map<String, String>> actuatorHealthGetWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = actuatorHealthGetValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
+    public ApiResponse<AuthResp> saqueepagueOauthTokenPostWithHttpInfo(String grantType, String password, String username) throws ApiException {
+        com.squareup.okhttp.Call call = saqueepagueOauthTokenPostValidateBeforeCall(grantType, password, username, null, null);
+        Type localVarReturnType = new TypeToken<AuthResp>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Retorna o estado do serviço. (asynchronously)
-     * Verifica a disponibilidade do serviço de sonda.
+     * Retorna o token de autenticação do serviço. (asynchronously)
+     * Autentica o usuário e gera um token para a requisição de sonda.
+     * @param grantType  (optional)
+     * @param password  (optional)
+     * @param username  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call actuatorHealthGetAsync(final ApiCallback<Map<String, String>> callback) throws ApiException {
+    public com.squareup.okhttp.Call saqueepagueOauthTokenPostAsync(String grantType, String password, String username, final ApiCallback<AuthResp> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -163,8 +182,8 @@ public class HealthCheckControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = actuatorHealthGetValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
+        com.squareup.okhttp.Call call = saqueepagueOauthTokenPostValidateBeforeCall(grantType, password, username, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<AuthResp>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

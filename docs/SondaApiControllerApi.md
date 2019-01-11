@@ -17,11 +17,11 @@ Procura o último estado conhecido de uma transação específica dos últimos 7
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SondaApiControllerApi;
+//import br.com.saqueepague.ApiClient;
+//import br.com.saqueepague.ApiException;
+//import br.com.saqueepague.Configuration;
+//import br.com.saqueepague.auth.*;
+//import br.com.saqueepague.sonda.SondaApiControllerApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

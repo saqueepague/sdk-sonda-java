@@ -17,8 +17,8 @@ Verifica a disponibilidade do serviço de sonda.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.HealthCheckControllerApi;
+//import br.com.saqueepague.ApiException;
+//import br.com.saqueepague.sonda.HealthCheckControllerApi;
 
 
 HealthCheckControllerApi apiInstance = new HealthCheckControllerApi();

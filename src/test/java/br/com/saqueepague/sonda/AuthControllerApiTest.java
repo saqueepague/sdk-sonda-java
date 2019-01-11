@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.api;
+package br.com.saqueepague.sonda;
 
-import io.swagger.client.ApiException;
+import br.com.saqueepague.ApiException;
 import io.swagger.client.model.AuthResp;
 import org.junit.Test;
 import org.junit.Ignore;

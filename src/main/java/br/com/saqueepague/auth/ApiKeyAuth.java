@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.auth;
+package br.com.saqueepague.auth;
 
-import io.swagger.client.Pair;
+import br.com.saqueepague.Pair;
 
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T15:47:10.474Z[GMT]")public class ApiKeyAuth implements Authentication {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T16:00:06.901Z[GMT]")public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;
 

@@ -25,7 +25,7 @@ import java.io.IOException;
  * Objeto de requisição que contem dados do estabelecimento que gerou a transação sondada.
  */
 @Schema(description = "Objeto de requisição que contem dados do estabelecimento que gerou a transação sondada.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T15:47:10.474Z[GMT]")public class SondaReqTerminal {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2019-01-11T16:00:06.901Z[GMT]")public class SondaReqTerminal {
 
   @SerializedName("codEstab")
   private Long codEstab = null;

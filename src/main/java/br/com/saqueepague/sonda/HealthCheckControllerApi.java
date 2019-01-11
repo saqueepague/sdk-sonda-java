@@ -10,24 +10,22 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client.api;
+package br.com.saqueepague.sonda;
 
-import io.swagger.client.ApiCallback;
-import io.swagger.client.ApiClient;
-import io.swagger.client.ApiException;
-import io.swagger.client.ApiResponse;
-import io.swagger.client.Configuration;
-import io.swagger.client.Pair;
-import io.swagger.client.ProgressRequestBody;
-import io.swagger.client.ProgressResponseBody;
+import br.com.saqueepague.ApiCallback;
+import br.com.saqueepague.ApiClient;
+import br.com.saqueepague.ApiException;
+import br.com.saqueepague.ApiResponse;
+import br.com.saqueepague.Configuration;
+import br.com.saqueepague.Pair;
+import br.com.saqueepague.ProgressRequestBody;
+import br.com.saqueepague.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
 
-import io.swagger.client.model.SondaReq;
-import io.swagger.client.model.SondaResp;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -35,14 +33,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SondaApiControllerApi {
+public class HealthCheckControllerApi {
     private ApiClient apiClient;
 
-    public SondaApiControllerApi() {
+    public HealthCheckControllerApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SondaApiControllerApi(ApiClient apiClient) {
+    public HealthCheckControllerApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -55,18 +53,17 @@ public class SondaApiControllerApi {
     }
 
     /**
-     * Build call for saqueepagueSondaPost
-     * @param body Objeto com dados de procura da transação. (required)
+     * Build call for actuatorHealthGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call saqueepagueSondaPostCall(SondaReq body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
+    public com.squareup.okhttp.Call actuatorHealthGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/saqueepague/sonda";
+        String localVarPath = "/actuator/health";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -76,13 +73,13 @@ public class SondaApiControllerApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            "application/json"
+            "*/*"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json"
+            
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -99,18 +96,14 @@ public class SondaApiControllerApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "OAuth2" };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call saqueepagueSondaPostValidateBeforeCall(SondaReq body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling saqueepagueSondaPost(Async)");
-        }
+    private com.squareup.okhttp.Call actuatorHealthGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        com.squareup.okhttp.Call call = saqueepagueSondaPostCall(body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = actuatorHealthGetCall(progressListener, progressRequestListener);
         return call;
 
         
@@ -120,39 +113,36 @@ public class SondaApiControllerApi {
     }
 
     /**
-     * Retorna o estado de uma transação.
-     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
-     * @param body Objeto com dados de procura da transação. (required)
-     * @return SondaResp
+     * Retorna o estado do serviço.
+     * Verifica a disponibilidade do serviço de sonda.
+     * @return Map&lt;String, String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SondaResp saqueepagueSondaPost(SondaReq body) throws ApiException {
-        ApiResponse<SondaResp> resp = saqueepagueSondaPostWithHttpInfo(body);
+    public Map<String, String> actuatorHealthGet() throws ApiException {
+        ApiResponse<Map<String, String>> resp = actuatorHealthGetWithHttpInfo();
         return resp.getData();
     }
 
     /**
-     * Retorna o estado de uma transação.
-     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
-     * @param body Objeto com dados de procura da transação. (required)
-     * @return ApiResponse&lt;SondaResp&gt;
+     * Retorna o estado do serviço.
+     * Verifica a disponibilidade do serviço de sonda.
+     * @return ApiResponse&lt;Map&lt;String, String&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SondaResp> saqueepagueSondaPostWithHttpInfo(SondaReq body) throws ApiException {
-        com.squareup.okhttp.Call call = saqueepagueSondaPostValidateBeforeCall(body, null, null);
-        Type localVarReturnType = new TypeToken<SondaResp>(){}.getType();
+    public ApiResponse<Map<String, String>> actuatorHealthGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = actuatorHealthGetValidateBeforeCall(null, null);
+        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Retorna o estado de uma transação. (asynchronously)
-     * Procura o último estado conhecido de uma transação específica dos últimos 7 dias (casos que a sonda pode tentar verificar em finais de semana ou feriado).
-     * @param body Objeto com dados de procura da transação. (required)
+     * Retorna o estado do serviço. (asynchronously)
+     * Verifica a disponibilidade do serviço de sonda.
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call saqueepagueSondaPostAsync(SondaReq body, final ApiCallback<SondaResp> callback) throws ApiException {
+    public com.squareup.okhttp.Call actuatorHealthGetAsync(final ApiCallback<Map<String, String>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -173,8 +163,8 @@ public class SondaApiControllerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = saqueepagueSondaPostValidateBeforeCall(body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<SondaResp>(){}.getType();
+        com.squareup.okhttp.Call call = actuatorHealthGetValidateBeforeCall(progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

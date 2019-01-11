@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-package io.swagger.client;
+package br.com.saqueepague;
 
 import com.squareup.okhttp.*;
 import com.squareup.okhttp.internal.http.HttpMethod;
@@ -44,10 +44,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.swagger.client.auth.Authentication;
-import io.swagger.client.auth.HttpBasicAuth;
-import io.swagger.client.auth.ApiKeyAuth;
-import io.swagger.client.auth.OAuth;
+import br.com.saqueepague.auth.Authentication;
+import br.com.saqueepague.auth.HttpBasicAuth;
+import br.com.saqueepague.auth.ApiKeyAuth;
+import br.com.saqueepague.auth.OAuth;
 
 public class ApiClient {
 

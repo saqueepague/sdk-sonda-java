@@ -1,4 +1,4 @@
-# swagger-java-client
+# saqueepague-sonda
 
 ## Requirements
 
@@ -26,8 +26,8 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-    <groupId>io.swagger</groupId>
-    <artifactId>swagger-java-client</artifactId>
+    <groupId>saqueepague</groupId>
+    <artifactId>saqueepague-sonda</artifactId>
     <version>1.0.0</version>
     <scope>compile</scope>
 </dependency>
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.swagger:swagger-java-client:1.0.0"
+compile "saqueepague:saqueepague-sonda:1.0.0"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/swagger-java-client-1.0.0.jar
+* target/saqueepague-sonda-1.0.0.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -57,10 +57,10 @@ Then manually install the following JARs:
 Please follow the [installation](#installation) instruction and execute the following Java code:
 
 ```java
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
+import br.com.saqueepague.*;
+import br.com.saqueepague.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.AuthControllerApi;
+import br.com.saqueepague.sonda.AuthControllerApi;
 
 import java.io.File;
 import java.util.*;
